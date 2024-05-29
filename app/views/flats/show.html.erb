@@ -1,0 +1,22 @@
+<!-- app/views/flats/show.html.erb -->
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <% if @flat.picture_url.present? %>
+      <%= image_tag @flat.picture_url, alt: @flat.name, class: "card-img-top" %>
+    <% end %>
+    <div class="card-body">
+      <h2 class="card-title"><%= @flat.name %></h2>
+      <p class="card-text"><strong>Address:</strong> <%= @flat.address %></p>
+      <p class="card-text"><strong>Description:</strong> <%= @flat.description %></p>
+      <p class="card-text"><strong>Price per night:</strong> <%= number_to_currency(@flat.price_per_night) %></p>
+      <p class="card-text"><strong>Number of guests:</strong> <%= @flat.number_of_guests %></p>
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <div class="btn-group">
+          <%= link_to 'Edit', edit_flat_path(@flat), class: "btn btn-outline-primary" %>
+          <%= link_to 'Back to list', flats_path, class: "btn btn-outline-secondary" %>
+        </div>
+        <%= link_to 'Delete', flat_path(@flat), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
